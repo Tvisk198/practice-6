@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практична робота №6 | Портфоліо</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Бокове меню -->
+        <aside class="sidebar glass">
+            <div class="sidebar-header">
+                <h2>Практична 6</h2>
+                <p>JS Forms & Events</p>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-target="task1">Завдання 1</button>
+                <button class="nav-btn" data-target="task2">Завдання 2</button>
+                <button class="nav-btn" data-target="task3">Завдання 3</button>
+                <button class="nav-btn" data-target="task4">Завдання 4</button>
+                <button class="nav-btn" data-target="task5">Завдання 5</button>
+                <button class="nav-btn" data-target="task6">Завдання 6</button>
+            </nav>
+            <div class="user-profile">
+                <div class="avatar">ТВ</div>
+                <span>Студент Тарасюк В.В.</span>
+            </div>
+        </aside>
+
+        <!-- Головна область контенту -->
+        <main class="content-area">
+            
+            <!-- Завдання 1: Зміна кольору фону -->
+            <section id="task1" class="task-section active glass-panel">
+                <div class="task-header">
+                    <h2>Зміна кольору фону</h2>
+                    <span class="badge">onchange</span>
+                </div>
+                <div class="task-content">
+                    <p>Оберіть тему для застосунку з випадаючого списку. Спрацьовує подія <code>onchange</code>.</p>
+                    <div class="form-group">
+                        <label for="bgColorSelect">Оберіть градієнт фону:</label>
+                        <select id="bgColorSelect" onchange="changeBgColor()">
+                            <option value="linear-gradient(135deg, #0f2027, #203a43, #2c5364)">Глибокий океан (За замовчуванням)</option>
+                            <option value="linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%)">Рожевий захід</option>
+                            <option value="linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)">М'ятний</option>
+                            <option value="linear-gradient(135deg, #fa709a 0%, #fee140 100%)">Персиковий</option>
+                            <option value="linear-gradient(135deg, #30cfd0 0%, #330867 100%)">Космос</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Завдання 2: Логічна функція -->
+            <section id="task2" class="task-section glass-panel">
+                <div class="task-header">
+                    <h2>Тестування логічних функцій</h2>
+                    <span class="badge">onclick / ondblclick</span>
+                </div>
+                <div class="task-content">
+                    <p>Оберіть логічну операцію та вхідні значення для змінних <strong>A</strong> та <strong>B</strong>, щоб перевірити таблицю істинності.</p>
+                    
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label>Логічна операція:</label>
+                        <select id="logicOp">
+                            <option value="OR">АБО (OR)</option>
+                            <option value="AND">І (AND)</option>
+                            <option value="XOR">Виключне АБО (XOR)</option>
+                        </select>
+                    </div>
+
+                    <div class="logic-inputs">
+                        <div class="input-group-radio">
+                            <label>Змінна A:</label>
+                            <label class="radio-label"><input type="radio" name="inputA" value="0" checked> 0</label>
+                            <label class="radio-label"><input type="radio" name="inputA" value="1"> 1</label>
+                        </div>
+                        <div class="input-group-radio">
+                            <label>Змінна B:</label>
+                            <label class="radio-label"><input type="radio" name="inputB" value="0" checked> 0</label>
+                            <label class="radio-label"><input type="radio" name="inputB" value="1"> 1</label>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn" onclick="checkLogic()">Перевірити (Один клік)</button>
+                        <button class="btn btn-outline" ondblclick="checkLogic()">Перевірити (Подвійний клік)</button>
+                    </div>
+                    <div id="logicResult" class="result-box hidden"></div>
+                </div>
+            </section>
+
+            <!-- Завдання 3: Інтерактивний тест -->
+            <section id="task3" class="task-section glass-panel">
+                <div class="task-header">
+                    <h2>Інтерактивний IT-Квіз</h2>
+                    <span class="badge">Dynamic JS</span>
+                </div>
+                <div class="task-content">
+                    <div class="quiz-app" id="quizApp">
+                        <div class="quiz-progress">Питання <span id="qCurrent">1</span> з <span id="qTotal">3</span></div>
+                        <h3 id="quizQuestion" class="quiz-question">Питання завантажується...</h3>
+                        <div class="quiz-options" id="quizOptions">
+                            <!-- Кнопки відповідей будуть згенеровані через JS -->
+                        </div>
+                    </div>
+                    <div id="quizFinal" class="result-box hidden" style="text-align: center; border-left: none;">
+                        <h3 style="font-size: 24px; margin-bottom: 10px;">Тест завершено! 🎉</h3>
+                        <p style="font-size: 18px; margin-bottom: 20px;">Ваш результат: <strong style="color: var(--primary-color);"><span id="quizScore">0</span> з 3</strong></p>
+                        <button class="btn" onclick="resetQuiz()">Спробувати ще раз</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Завдання 4: Реєстрація -->
+            <section id="task4" class="task-section glass-panel">
+                <div class="task-header">
+                    <h2>Форма реєстрації</h2>
+                    <span class="badge">onsubmit / onfocus</span>
+                </div>
+                <div class="task-content">
+                    <form id="regForm" onsubmit="submitRegistration(event)">
+                        <div class="form-group">
+                            <label>Ім'я користувача</label>
+                            <input type="text" id="regUsername" required placeholder="Введіть логін" onfocus="this.placeholder=''" onblur="this.placeholder='Введіть логін'">
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль</label>
+                            <input type="password" id="regPassword" required placeholder="Мінімум 6 символів" onfocus="this.placeholder=''" onblur="this.placeholder='Мінімум 6 символів'">
+                        </div>
+                        <div class="form-group">
+                            <label>Email адреса</label>
+                            <input type="email" id="regEmail" required placeholder="example@mail.com" onfocus="this.placeholder=''" onblur="this.placeholder='example@mail.com'">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn">Зареєструватись</button>
+                            <button type="reset" class="btn btn-outline">Очистити</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Завдання 5: Калькулятор -->
+            <section id="task5" class="task-section glass-panel">
+                <div class="task-header">
+                    <h2>Простий калькулятор</h2>
+                    <span class="badge">math</span>
+                </div>
+                <div class="task-content">
+                    <p>Введіть два числа для обчислення їх суми.</p>
+                    <div class="calc-container">
+                        <div class="calc-inputs">
+                            <input type="number" id="calcA" placeholder="Число 1">
+                            <span class="operator">+</span>
+                            <input type="number" id="calcB" placeholder="Число 2">
+                        </div>
+                        <button class="btn" onclick="calculateSum()">Обчислити суму</button>
+                        <div id="calcResult" class="result-box hidden"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Завдання 6: Email форма -->
+            <section id="task6" class="task-section glass-panel">
+                <div class="task-header">
+                    <h2>Зворотній зв'язок</h2>
+                    <span class="badge">mailto</span>
+                </div>
+                <div class="task-content">
+                    <form id="emailForm" onsubmit="sendEmail(event)">
+                        <div class="form-group">
+                            <label>Ваше ім'я</label>
+                            <input type="text" id="emailName" required placeholder="Ім'я та прізвище">
+                        </div>
+                        <div class="form-group">
+                            <label>Тема повідомлення</label>
+                            <input type="text" id="emailSubject" required placeholder="Запитання щодо роботи">
+                        </div>
+                        <div class="form-group">
+                            <label>Повідомлення</label>
+                            <textarea id="emailMessage" rows="5" required placeholder="Напишіть своє повідомлення тут..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn">Відправити Email</button>
+                            <button type="reset" class="btn btn-outline">Очистити</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
